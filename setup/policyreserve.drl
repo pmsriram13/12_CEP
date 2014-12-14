@@ -19,7 +19,7 @@ rule "exceedThreshold"
 
     when
     	blist: ArrayList(size > 10)
-    		from collect(PolicyBinding() over window:time(30m));
+    		from collect(PolicyBinding() over window:time(30m) );
     		
         a: Number(intValue > 710) from accumulate (
         	PolicyBinding(p: price) from blist,
@@ -37,7 +37,7 @@ rule "withinThreshold"
     when
         //conditions
         blist: ArrayList(size > 10)
-    		from collect(PolicyBinding() over window:time(30m));
+    		from collect(PolicyBinding() over window:time(30m) );
     		
         a: Number(intValue <= 710) from accumulate (
         	PolicyBinding(p: price) from blist,
